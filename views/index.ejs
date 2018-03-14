@@ -2,8 +2,25 @@
 <html lang="en">
 <head>
     <title>WebRTC study</title>
+    <link rel="stylesheet" type="text/css" href="/public/style/style.css">
+    <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-    Hello!
+<div>
+    <label for="cameras-list">Selct camera:</label>
+    <select id="cameras-list"></select>
+</div>
+<div>
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" name="name">
+    <label for="message">Message:</label>
+    <input type="text" id="message" name="message">
+    <input type="submit" id="send-message" value="Send Message">
+    <div id="chat"></div>
+</div>
+<video id="video-tag" autoplay></video>
+<script src="/public/js/settings.js"></script>
+<script src="/public/js/takePicture.js"></script>
+<script src="/public/js/client.js"></script>
 </body>
 </html>
