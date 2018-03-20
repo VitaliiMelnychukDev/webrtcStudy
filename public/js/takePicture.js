@@ -15,4 +15,4 @@
         pictureOutputBlock.setAttribute('src', canvasData);
     }
 
-})(videoTag);
+})(myVideoTag);

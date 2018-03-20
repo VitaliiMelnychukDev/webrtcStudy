@@ -8,16 +8,24 @@ app.use(express.static(path.join(__dirname, '/')))
 console.log('Server started');
 
 app.io.route('ready', (req) => {
-    req.io.join(req.data);
-    app.io.room(req.data).broadcast('announce', {
-        message: 'Client name: ' + req.data
+    req.io.join(req.data.chat_room);
+    req.io.join(req.data.signal_room);
+    app.io.room(req.data.chat_room).broadcast('announce', {
+        message: 'Client name: ' + req.data.chat_room
     })
 });
 
 app.io.route('send', (req) => {
-    app.io.room(req.data.room).broadcast('message', {
+    app.io.room(req.data.chat_room).broadcast('message', {
         message: req.data.message,
         author: req.data.author
+    })
+});
+
+app.io.route('signal', (req) => {
+    req.io.room(req.data.signal_room).broadcast('signaling_message', {
+        type: req.data.type,
+        message: req.data.message
     })
 });
 
